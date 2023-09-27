@@ -2,22 +2,26 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
+import numpy as np
+
 
 # 假设我们有一些简化的数据，例如每行代表一个房子，包含房间数和房价
-data = [
-    [2, 200000],
-    [2, 200000],
-    [2, 200000],
-    [2, 200000],
-    [3, 300000],
-    [3, 300000],
-    [3, 300000],
-    [4, 400000],
-    [4, 400000],
-    [4, 400000],
-    [4, 400000],
-    # ... 更多数据 ...
-]
+# data = [
+#     [2, 200000],
+#     [2, 200000],
+#     [2, 200000],
+#     [2, 200000],
+#     [3, 300000],
+#     [3, 300000],
+#     [3, 300000],
+#     [4, 400000],
+#     [4, 400000],
+#     [4, 400000],
+#     [4, 400000],
+#     # ... 更多数据 ...
+# ]
+data = np.random.rand(200, 8)
+
 
 # 将数据转换为PyTorch张量
 data = torch.tensor(data, dtype=torch.float32)
@@ -75,6 +79,6 @@ for epoch in range(epochs):
 # 评估模型
 model.eval()
 with torch.no_grad():
-    test_data = torch.tensor([[3]], dtype=torch.float32)
+    test_data = torch.tensor([[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7]], dtype=torch.float32)
     prediction = model(test_data)
     print(f"3个房间的房子的预测价格为：{prediction.item():.2f}")
